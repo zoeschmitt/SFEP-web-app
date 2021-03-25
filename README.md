@@ -1,4 +1,6 @@
-# Software Engineering Project
+# Software Engineering Project - Front End
+
+[Server Repository](https://github.com/zoeschmitt/SFEP-Server)
 
 ## Running This project
 
