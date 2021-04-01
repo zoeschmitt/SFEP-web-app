@@ -1,13 +1,18 @@
 .posts-discussion-wrapper {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1000PX;
 }
 
 .posts-list-container {
-    padding-top: 20px;
+    padding: 50px;
     text-align: center;
     align-items: center;
     justify-content: center;
     width: 65%;
     height: 100%;
     display: inline-block;
+    text-decoration: none;
+    list-style: none;
 }

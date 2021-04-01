@@ -17,7 +17,7 @@ nav {
     height: 80px;
     z-index: 1;
     width: 100%;
-    padding: 0 140px;
+    padding: 20px 140px;
 }
 
 .nav-logo {
@@ -40,6 +40,16 @@ nav {
     top: 0;
     right: 0;
     transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.icon {
+    /* display: block; */
+    /* position: absolute; */
+    top: 0;
+    /* right: 0;
+    transform: translate(-100%, 60%); */
     font-size: 1.8rem;
     cursor: pointer;
 }
