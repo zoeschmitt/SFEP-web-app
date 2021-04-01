@@ -8,7 +8,7 @@ import { posts } from './testData'
 
 const Home = () => {
     const [isOpen, setIsOpen] = useState(false) // sidebar
-    const [selectedPost, setSelectedPost] = useState(posts[0])
+    const [selectedPost, setSelectedPost] = useState(null) //posts[0]
     const toggle = () => {
         setIsOpen(!isOpen)
     }
@@ -18,11 +18,11 @@ const Home = () => {
             <NavBar toggle={toggle} />
             <div className="posts-discussion-wrapper">
                 <ul className="posts-list-container">
-                    {posts.map(post => (
+                   {/*  {posts.map(post => (
                         <li key={post.id} onClick={() => setSelectedPost(post.id)}>
                             <PostContainer />
                         </li>
-                    ))}
+                    ))} */}
                 </ul>
                 <DiscussionContainer />
             </div>
