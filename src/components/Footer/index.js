@@ -1,6 +1,7 @@
 import React from 'react'
 import { animateScroll as scroll } from 'react-scroll';
 import { Link as LinkS } from 'react-scroll'
+import './styles.css';
 
 const Footer = () => {
     const toggleHome = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
     };
     return (
         <div className="footer-wrapper">
-            <footer className="footer-container">
+            <footer>
                 <div className="content-container">
                     <LinkS className="logo-container" to='/' onClick={toggleHome}>
                         <img className="logo-image" src="" alt="logo" />
