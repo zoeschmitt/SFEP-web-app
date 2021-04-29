@@ -67,8 +67,6 @@ class ShowPost extends React.Component {
       };
     }
 
-    
-
     componentDidMount(){
       var self = this;
  
@@ -94,7 +92,7 @@ class ShowPost extends React.Component {
             {
               this.state.posts.map(function(post,index) {
                  return <a href="#" key={index} className="list-group-item active">
-                          <h4 className="list-group-item-heading">{post.title}</h4>
+                          <h3 className="list-group-item-heading">{post.title}</h3>
                           <p className="list-group-item-text">{post.subject}</p>
                         </a>
               })
