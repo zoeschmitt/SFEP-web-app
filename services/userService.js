@@ -1,7 +1,37 @@
 import axios from 'axios';
 
+/*
+Example of calling one of these functions:
+
+** PARAMS HAVE TO BE IN THE RIGHT ORDER**
+
+const res = await createUser('John Smith', 'johnsmith@gmail.com', 'mypassword', 'Professor');
+
+User Object:
+
+{
+    _id: string,
+    name: string,
+    password: string,
+    email: string, 
+    title: string
+}
+
+*/
 
 class UserService {
+
+    /*
+    Params Required:
+    - name (string)
+    - email (string)
+    - password (string)
+    - title (string)
+    
+    Returns: ** RETURNS AUTH TOKEN**
+    - Successful: Will return a map -> {status: true, msg: 'success message', token: string}
+    - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
+    */
     async createUser(name, email, password, title) {
         try {
             const reqBody = {
@@ -26,6 +56,15 @@ class UserService {
         }
     }
 
+    /*
+    Params Required:
+    - email (string)
+    - password (string)
+    
+    Returns: ** RETURNS AUTH TOKEN**
+    - Successful: Will return a map -> {status: true, msg: 'success message', token: string}
+    - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
+    */
     async signIn(email, password) {
         try {
             const reqBody = {
@@ -48,6 +87,14 @@ class UserService {
         }
     }
 
+    /*
+    Params Required:
+    - userId (string)
+    
+    Returns: 
+    - Successful: Will return a map -> {status: true, user: user object}
+    - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
+    */
     async getUserInfo(userId) {
         try {
             const res = await axios.get(`http://localhost:8000/api/user/${userId}`);
@@ -64,6 +111,19 @@ class UserService {
         }
     }
 
+    /*
+    Params Required:
+    - name (string)
+    - email (string)
+    - password (string)
+    - title (string)
+    - userId (string)
+    - token (string)
+    
+    Returns: 
+    - Successful: Will return a map -> {status: true, msg: 'success message'}
+    - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
+    */
     async updateUser(name, email, password, title, userId, token) {
         try {
             const reqBody = {
@@ -85,6 +145,17 @@ class UserService {
         }
     }
 
+    /*
+    ** REMEMBER TO CLEAR THE AUTH TOKEN LOCALLY**
+    
+    Params Required:
+    - userId (string)
+    - token (string)
+    
+    Returns: 
+    - Successful: Will return a map -> {status: true, msg: 'success message'}
+    - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
+    */
     async logout(userId, token) {
         try {
             const res = await axios.post(`http://localhost:8000/api/logout/${userId}`, { headers: { 'auth-token': token } });
