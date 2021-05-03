@@ -1,77 +1,83 @@
-
 nav {
-    height: 80px;
-    margin-top: -80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.15rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  height: 80px;
+  margin-top: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.15rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .nav-bar-container {
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-    z-index: 1;
-    width: 100%;
-    padding: 20px 140px;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  padding: 20px 140px;
 }
 
 .nav-logo {
-    /* scroll link*/
-    justify-self: flex-start;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+  /* scroll link*/
+  justify-self: flex-start;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .logo-image {
-    /* image */
-    width: 100%;
+  /* image */
+  width: 100%;
 }
 
 .profile-image-icon {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 60%);
-    font-size: 1.8rem;
-    cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-100%, 60%);
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
 .icon {
-    /* display: block; */
-    /* position: absolute; */
-    top: 0;
-    /* right: 0;
-    transform: translate(-100%, 60%); */
-    font-size: 1.8rem;
-    cursor: pointer;
+  top: 0;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.icon > input {
+  padding: 8px 10px;
+  border: 1px solid #f4f5fa;
+  box-shadow: 0px 1px 0px 1px #f4f5fa;
+  border-radius: 0px 50px 50px 0px;
+  position: relative;
+  outline-width: 0;
+}
+.icon > FiSearch {
+  right: 100px;
+  position: relative;
 }
 
-
 @media screen and (max-width: 960px) {
-    nav {
-        transition: 0.8s all ease;
-    }
+  nav {
+    transition: 0.8s all ease;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .nav-bar-container {
-        padding: 0 50px;
-    }
-    .logo-image {
-        width: 80%;
-    }
+  .nav-bar-container {
+    padding: 0 50px;
+  }
+  .logo-image {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .nav-bar-container {
-        padding: 0 20px;
-    }
+  .nav-bar-container {
+    padding: 0 20px;
+  }
 }
