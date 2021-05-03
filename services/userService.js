@@ -62,7 +62,7 @@ class UserService {
     - password (string)
     
     Returns: ** RETURNS AUTH TOKEN**
-    - Successful: Will return a map -> {status: true, msg: 'success message', token: string}
+    - Successful: Will return a map -> {status: true, user: user object, token: string}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
     async signIn(email, password) {
@@ -74,11 +74,11 @@ class UserService {
 
             const res = await axios.post('http://localhost:8000/api/signin', reqBody);
 
-            console.log(`req for signIn: ${reqBody}`);
-            console.log(`res for signIn: ${res.data}`);
+            console.log(reqBody);
+            console.log(res.data);
 
             if (res.status == 200) {
-                return { 'status': true, 'msg': 'Successfully logged in', 'token': res.data.token }
+                return { 'status': true, 'user': res.data.user, 'token': res.data.token }
             } else {
                 return { 'status': false, 'msg': `${res.data.error}` }
             }
@@ -99,12 +99,12 @@ class UserService {
         try {
             const res = await axios.get(`http://localhost:8000/api/user/${userId}`);
 
-            console.log(`res for signIn: ${res.data}`);
+            console.log(res.data);
 
             if (res.status == 200) {
                 return { 'status': true, 'user': res.data }
             } else {
-                return { 'status': false, 'msg': `${res.data.error}` }
+                return { 'status': false, 'msg': res.data.error }
             }
         } catch (e) {
             return { 'status': false, 'msg': `${e}` }
@@ -121,7 +121,7 @@ class UserService {
     - token (string)
     
     Returns: 
-    - Successful: Will return a map -> {status: true, msg: 'success message'}
+    - Successful: Will return a map -> {status: true, user: user object}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
     async updateUser(name, email, password, title, userId, token) {
@@ -136,9 +136,9 @@ class UserService {
             const res = await axios.post(`http://localhost:8000/api/update/${userId}`, reqBody, { headers: { 'auth-token': token } });
 
             if (res.status == 200) {
-                return { 'status': true, 'msg': 'Successfully updated user' }
+                return { 'status': true, 'user': res.data.user }
             } else {
-                return { 'status': false, 'msg': `${res.data.error}` }
+                return { 'status': false, 'msg': res.data.error }
             }
         } catch (e) {
             return { 'status': false, 'msg': `${e}` }
@@ -158,14 +158,16 @@ class UserService {
     */
     async logout(userId, token) {
         try {
-            const res = await axios.post(`http://localhost:8000/api/logout/${userId}`, { headers: { 'auth-token': token } });
+            const res = await axios.post(`http://localhost:8000/api/logout/${userId}`, {}, { headers: { 'auth-token': token } });
 
             if (res.status == 200) {
-                return { 'status': true, 'msg': 'Successfully updated user' }
+                return { 'status': true, 'msg': 'Successfully logged out user' }
             } else {
-                return { 'status': false, 'msg': `${res.data.error}` }
+                console.log(res.data.error);
+                return { 'status': false, 'msg': res.data.error }
             }
         } catch (e) {
+            console.log(e);
             return { 'status': false, 'msg': `${e}` }
         }
     }
