@@ -1,3 +1,7 @@
+import PostService from "./postService";
+import UserService from "./userService";
+const service = new PostService();
+const userService = new UserService();
 var Router = window.ReactRouter.Router;
 var Route = window.ReactRouter.Route;
 var hashHistory = window.ReactRouter.hashHistory;
@@ -5,6 +9,7 @@ var Link = window.ReactRouter.Link;
 
 class Signin extends React.Component {
     constructor(props) {
+      
       super(props);
       this.signIn = this.signIn.bind(this);
       this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -14,11 +19,15 @@ class Signin extends React.Component {
         password:''
       };
     }
-    signIn(){
+    async signIn(){
+      var user = await userService.signIn(this.state.email, this.state.password)
+      if (user.status == true) window.location.assign('http://localhost:7777/home')
+      /*
       axios.post('/signin', {
         email: this.state.email,
         password: this.state.password
       })
+      
       .then(function (response) {
         if(response.data == 'success'){
           window.location.assign('http://localhost:7777/home')
@@ -27,6 +36,7 @@ class Signin extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+      */
     }
     handleEmailChange(e){
       this.setState({email:e.target.value})
@@ -77,11 +87,15 @@ class Signup extends React.Component{
   handlePasswordChange(e){
     this.setState({password:e.target.value})
   }
-  signUp(){
+  async signUp(){
+    var user = await userService.createUser(this.state.name, this.state.email, this.state.password, 'professor')
+    if (user.status == true) window.location.assign('http://localhost:7777/home')
+    /*
     axios.post('/signup', {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password
+      
     })
     .then(function (response) {
       console.log(response);
@@ -89,6 +103,7 @@ class Signup extends React.Component{
     .catch(function (error) {
       console.log(error);
     });
+    */
   }
   render() {
       return (

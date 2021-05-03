@@ -1,3 +1,7 @@
+import PostService from "./postService";
+import UserService from "./userService";
+const service = new PostService();
+const userService = new UserService();
 var Router = window.ReactRouter.Router;
 var Route = window.ReactRouter.Route;
 var hashHistory = window.ReactRouter.hashHistory;
@@ -19,6 +23,8 @@ class AddPost extends React.Component {
       document.getElementById('homeHyperlink').className = "";
     }
     addPost(){
+      var post = await PostService.createPost()
+      /*
       axios.post('/addPost', {
         title: this.state.title,
         subject: this.state.subject
@@ -30,6 +36,7 @@ class AddPost extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+      */
     }
     handleTitleChange(e){
       this.setState({title:e.target.value})

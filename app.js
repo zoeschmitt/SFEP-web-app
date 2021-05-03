@@ -1,11 +1,20 @@
+/*
+import express from 'express';
+import session from 'express-session';
+
+import path from 'path';
+import bodyParser from 'body-parser';
+import user from './user';
+import post from './post';
+
+*/
 var express = require("express");
 var session = require('express-session');
 
 var path = require("path");
 var bodyParser = require("body-parser");
-var user = require('./user')
-var post = require('./post')
-
+var user = require('./services/userService')
+var post = require('./services/postService')
 var app = express();
 
 app.use(session({secret: 'my-secret'}));
