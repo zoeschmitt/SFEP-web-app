@@ -61,8 +61,8 @@
     transition: 0.2s ease-in-out;
 }
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
     .side-bar-menu-list {
         grid-template-rows: repeat(6, 60px);
     }
-}
+} */
