@@ -9,9 +9,16 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  /*
+  Params Required:
+  - email (string)
+  - password (string)
+  
+  Returns: ** RETURNS AUTH TOKEN**
+  - Successful: Will return a map -> {status: true, user: user object, token: string}
+  - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
+  */
   async function signInUser() {
-    console.log(email);
-    console.log(password);
     const user = await userService.createUser(email, password);
   }
 
@@ -24,8 +31,8 @@ export default function Login() {
   }
 
   return (
-    <div className="Login">
-      <h1 style={{textAlign:"center"}}>Acucheck</h1>
+    <div className="Login"> 
+      <h1 style={{textAlign:"center"}}>Acucheck</h1> 
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>

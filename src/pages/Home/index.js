@@ -41,7 +41,7 @@ const Home = () => {
     return (
         <>
             <SideBar isOpen={isOpen} toggle={toggle} />
-            <NavBar toggle={toggle} />
+            <NavBar toggle={toggle} setIsOpen={setIsOpen} />
             <div className="posts-discussion-wrapper">
                 <ul className="posts-list-container">
                     {posts.map(post => (

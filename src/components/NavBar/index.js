@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { FiSearch, FiUser } from 'react-icons/fi';
 import { animateScroll as scroll } from 'react-scroll';
+import SideBar from '../SideBar/index'
+
 import './styles.css';
 
-const NavBar = ({ toggle }) => {
+const NavBar = ({ toggle, setIsOpen}) => {
     const [scrollNav, setScrollNav] = useState(false);
     
     const changeNav = () => {
@@ -15,6 +17,12 @@ const NavBar = ({ toggle }) => {
     const toggleHome = () => {
         scroll.scrollToTop();
     };
+
+    function handleNavClick(e){
+        e.preventDefault();
+        console.log('The link was clicked.');
+        setIsOpen(true);
+    }
 
     return (
         <>
@@ -28,7 +36,9 @@ const NavBar = ({ toggle }) => {
                     </div>
                     <h1 style={{color: '#000'}}>Acucheck</h1>
                     <div className="icon">
-                        <FiUser style={{color: '#000'}}/>
+                        <FiUser style={{color: '#000'}}
+                        onClick={handleNavClick}
+                        ></FiUser>
                     </div>
                 </div>
             </nav>

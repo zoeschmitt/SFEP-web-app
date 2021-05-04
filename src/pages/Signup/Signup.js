@@ -16,13 +16,19 @@ export default function Login() {
         return email.length > 0 && password.length > 0 && username.length > 0 && title.length > 0; 
     }
 
+    /*
+    Params Required:
+    - name (string)
+    - email (string)
+    - password (string)
+    - title (string)
+    
+    Returns: ** RETURNS AUTH TOKEN**
+    - Successful: Will return a map -> {status: true, msg: 'success message', token: string}
+    - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
+    */
     async function makeUser() {
-      console.log(username);
-      console.log(email);
-      console.log(password);
-      console.log(title);
       const user = await userService.createUser(username, email, password, title);
-
     }
     
     function handleSubmit(event) {
