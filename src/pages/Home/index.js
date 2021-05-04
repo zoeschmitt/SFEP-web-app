@@ -41,7 +41,7 @@ const Home = ({token, user}) => {
     return (
         <>
             <SideBar isOpen={isOpen} toggle={toggle} user={user}/>
-            <NavBar toggle={toggle} />
+            <NavBar toggle={toggle} setPosts={setPosts}/>
             <div className="posts-discussion-wrapper">
                 <div className="posts-container-wrapper">
                 <ul className="posts-list-container">
@@ -52,6 +52,7 @@ const Home = ({token, user}) => {
                     ))}
                 </ul>
                 <DiscussionContainer user={user} selectedPost={selectedPost} token={token}/>
+            </div>
             </div>
             <Footer />
         </>

@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import axios from "axios";
 
 /*
 Example of calling one of these functions:
@@ -37,33 +36,32 @@ Commment Object:
 */
 
 class PostService {
-
-    /*
+  /*
     Params: none
     Returns:
     - Successful: Will return a map -> {status: true, posts: post objects}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async getAllPosts() {
-        console.log('inall posts');
-        try {
-            const res = await axios.get('http://localhost:8000/api/posts');
-            
-            if (res.status === 200) {
-                console.log(res.data);
+  async getAllPosts() {
+    console.log("inall posts");
+    try {
+      const res = await axios.get("http://localhost:8000/api/posts");
 
-                return { 'status': true, 'posts': res.data }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+      if (res.status === 200) {
+        console.log(res.data);
+
+        return { status: true, posts: res.data };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - userId (string)
     - postTitle (string)
@@ -76,30 +74,34 @@ class PostService {
     - Successful: Will return a map -> {status: true, post: post object}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async createPost(userId, postTitle, postBody, userName, userTitle, token) {
-        try {
-            const reqBody = {
-                title: postTitle,
-                body: postBody,
-                userName: userName,
-                userTitle: userTitle
-            }
+  async createPost(userId, postTitle, postBody, userName, userTitle, token) {
+    try {
+      const reqBody = {
+        title: postTitle,
+        body: postBody,
+        userName: userName,
+        userTitle: userTitle,
+      };
 
-            const res = await axios.post(`http://localhost:8000/api/post/${userId}`, reqBody, { headers: { 'auth-token': token } });
+      const res = await axios.post(
+        `http://localhost:8000/api/post/${userId}`,
+        reqBody,
+        { headers: { "auth-token": token } }
+      );
 
-            if (res.status == 200) {
-                return { 'status': true, 'post': res.data.post }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+      if (res.status == 200) {
+        return { status: true, post: res.data.post };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - userId (string)
     - postId(string)
@@ -110,28 +112,32 @@ class PostService {
     - Successful: Will return a map -> {status: true, msg: 'success message'}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async updateLikes(userId, postId, like, token) {
-        try {
-            const reqBody = {
-                postId: postId,
-                updateType: like ? 1 : -1,
-            }
+  async updateLikes(userId, postId, like, token) {
+    try {
+      const reqBody = {
+        postId: postId,
+        updateType: like ? 1 : -1,
+      };
 
-            const res = await axios.post(`http://localhost:8000/api/updateLikes/${userId}`, reqBody, { headers: { 'auth-token': token } });
+      const res = await axios.post(
+        `http://localhost:8000/api/updateLikes/${userId}`,
+        reqBody,
+        { headers: { "auth-token": token } }
+      );
 
-            if (res.status == 200) {
-                return { 'status': true, 'msg': 'Successfully updated' }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+      if (res.status == 200) {
+        return { status: true, msg: "Successfully updated" };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - userId (string)
     - postId(string)
@@ -142,28 +148,32 @@ class PostService {
     - Successful: Will return a map -> {status: true, msg: 'success message'}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async updateCredibility(userId, postId, credibleVote, token) {
-        try {
-            const reqBody = {
-                postId: postId,
-                updateType: credibleVote ? 1 : -1,
-            }
+  async updateCredibility(userId, postId, credibleVote, token) {
+    try {
+      const reqBody = {
+        postId: postId,
+        updateType: credibleVote ? 1 : -1,
+      };
 
-            const res = await axios.post(`http://localhost:8000/api/updateCredibility/${userId}`, reqBody, { headers: { 'auth-token': token } });
+      const res = await axios.post(
+        `http://localhost:8000/api/updateCredibility/${userId}`,
+        reqBody,
+        { headers: { "auth-token": token } }
+      );
 
-            if (res.status == 200) {
-                return { 'status': true, 'msg': 'Successfully updated' }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+      if (res.status == 200) {
+        return { status: true, msg: "Successfully updated" };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - searchQuery (string)
     
@@ -171,22 +181,26 @@ class PostService {
     - Successful: Will return a map -> {status: true, posts: post objects}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async search(searchQuery) {
-        try {
-            const res = await axios.get(`http://localhost:8000/api/search/${searchQuery}`);
-            if (res.status == 200) {
-                return { 'status': true, 'posts': res.data.posts }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+  async search(searchQuery) {
+    console.log("hi");
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/api/search/${searchQuery}`
+      );
+      console.log(res.data);
+      if (res.status == 200) {
+        return { status: true, posts: res.data.posts };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - postId(string)
     
@@ -194,22 +208,24 @@ class PostService {
     - Successful: Will return a map -> {status: true, comments: comment objects}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async getDiscussion(postId) {
-        try {
-            const res = await axios.get(`http://localhost:8000/api/discussion/${postId}`);
-            if (res.status == 200) {
-                return { 'status': true, 'comments': res.data.discussion }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+  async getDiscussion(postId) {
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/api/discussion/${postId}`
+      );
+      if (res.status == 200) {
+        return { status: true, comments: res.data.discussion };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - userId (string)
     - postId (string)
@@ -222,31 +238,35 @@ class PostService {
     - Successful: Will return a map -> {status: true, comment: comment object}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async createComment(userId, postId, text, userName, userTitle, token) {
-        try {
-            const reqBody = {
-                postId: postId,
-                userId: userId,
-                text: text,
-                userName: userName,
-                userTitle: userTitle
-            }
+  async createComment(userId, postId, text, userName, userTitle, token) {
+    try {
+      const reqBody = {
+        postId: postId,
+        userId: userId,
+        text: text,
+        userName: userName,
+        userTitle: userTitle,
+      };
 
-            const res = await axios.post(`http://localhost:8000/api/comment`, reqBody, { headers: { 'auth-token': token } });
+      const res = await axios.post(
+        `http://localhost:8000/api/comment`,
+        reqBody,
+        { headers: { "auth-token": token } }
+      );
 
-            if (res.status == 200) {
-                return { 'status': true, 'comment': res.data.comment }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+      if (res.status == 200) {
+        return { status: true, comment: res.data.comment };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - postId (string)
     - token (auth token (string))
@@ -255,24 +275,26 @@ class PostService {
     - Successful: Will return a map -> {status: true, msg: 'success message'}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async deletePost(postId, token) {
-        try {
+  async deletePost(postId, token) {
+    try {
+      const res = await axios.delete(
+        `http://localhost:8000/api/deletePost/${postId}`,
+        { headers: { "auth-token": token } }
+      );
 
-            const res = await axios.delete(`http://localhost:8000/api/deletePost/${postId}`, { headers: { 'auth-token': token } });
-
-            if (res.status == 200) {
-                return { 'status': true, 'msg': 'Successfully deleted post' }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+      if (res.status == 200) {
+        return { status: true, msg: "Successfully deleted post" };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 
-    /*
+  /*
     Params Required:
     - commentId (string)
     - token (auth token (string))
@@ -281,22 +303,24 @@ class PostService {
     - Successful: Will return a map -> {status: true, msg: 'success message'}
     - Unsuccessful: Will return a map -> {status: false, msg: 'why it was unsuccessful'}
     */
-    async deleteComment(commentId, token) {
-        try {
+  async deleteComment(commentId, token) {
+    try {
+      const res = await axios.delete(
+        `http://localhost:8000/api/deleteComment/${commentId}`,
+        { headers: { "auth-token": token } }
+      );
 
-            const res = await axios.delete(`http://localhost:8000/api/deleteComment/${commentId}`, { headers: { 'auth-token': token } });
-
-            if (res.status == 200) {
-                return { 'status': true, 'msg': 'Successfully deleted comment' }
-            } else {
-                console.log(res.data.error);
-                return { 'status': false, 'msg': res.data.error }
-            }
-        } catch (e) {
-            console.log(e);
-            return { 'status': false, 'msg': `${e}` }
-        }
+      if (res.status == 200) {
+        return { status: true, msg: "Successfully deleted comment" };
+      } else {
+        console.log(res.data.error);
+        return { status: false, msg: res.data.error };
+      }
+    } catch (e) {
+      console.log(e);
+      return { status: false, msg: `${e}` };
     }
+  }
 }
 
 export default PostService;
