@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import UserService from "../../services/userService";
+import './Signup.css';
+
 
 export default function Login() {
     const userService = new UserService();
@@ -28,7 +30,8 @@ export default function Login() {
       }
 
       return (
-        <div className="signup">
+        <div className="Signup">
+          <h1 style={{textAlign:"center"}}>Acucheck</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group size="lg" controlId="email">
               <Form.Label>Email</Form.Label>
