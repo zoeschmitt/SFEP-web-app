@@ -1,0 +1,24 @@
+.buttons-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 10px 0;
+  }
+
+.icon-text-container {
+    display: flex;
+    align-items: top;
+}
+
+.icon {
+  top: 0;
+  font-size: 1.7rem;
+  cursor: pointer;
+  margin: 0 5px;
+  color: rgb(0, 0, 0);
+}
+
+.icon:hover {
+    color: rgb(47, 180, 241);
+    transform: scale(1.3);
+    transition: all 0.2s ease-in-out;
+  }

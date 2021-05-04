@@ -12,7 +12,7 @@ const Footer = () => {
             <footer>
                 <div className="content-container">
                     <LinkS className="logo-container" to='/' onClick={toggleHome}>
-                        <img className="logo-image" src="" alt="logo" />
+                        <h1 style={{ color: "#000" }}>Acucheck</h1>
                     </LinkS>
                 </div>
                 <div className="content-container">
@@ -21,7 +21,7 @@ const Footer = () => {
                 </div>
                 <div className="content-container">
                     <p className="footer-sub-heading">Get in Touch</p>
-                    <p className="footer-link" to="about" smooth={true} duration={500} spy={true} exact='true'>(512) - 566 - 8921</p>
+                    <p className="footer-link" >(512) - 566 - 8921</p>
                 </div>
             </footer>
         </div>

@@ -126,6 +126,7 @@ class PostService {
       );
 
       if (res.status == 200) {
+        console.log('updated likes')
         return { status: true, msg: "Successfully updated" };
       } else {
         console.log(res.data.error);
@@ -162,6 +163,7 @@ class PostService {
       );
 
       if (res.status == 200) {
+        console.log('updated cred')
         return { status: true, msg: "Successfully updated" };
       } else {
         console.log(res.data.error);
