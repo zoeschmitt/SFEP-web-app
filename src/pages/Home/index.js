@@ -48,7 +48,8 @@ const Home = ({token, user, toggleCreatePostBox}) => {
     return (
         <>
             <SideBar isOpen={isOpen} toggle={toggle} user={user}/>
-            <NavBar toggle={toggle} postBoxToggle={postBoxToggle}/>
+
+            <NavBar toggle={toggle} postBoxToggle={postBoxToggle} setPosts={setPosts}/>
             {postBoxOpen && <PostBox/>}
             <div className="posts-discussion-wrapper">
                 <div className="posts-container-wrapper">
