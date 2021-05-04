@@ -1,5 +1,6 @@
 .discussion-container {
     top: 0;
+    right: 0;
     /* margin: 0 0 15px 0;  */
     background: #efefef;
     border-radius: 25px;
@@ -10,7 +11,9 @@
     justify-content: left;
     align-items: top;
     overflow: hidden;
-    width: 80%;
-    height: 60%;
+    width: 40%;
+    height: 80%;
     box-sizing: border-box;
-}
+    position: fixed;
+    margin-top: 100px;
+  }

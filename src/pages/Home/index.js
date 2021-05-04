@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import CommentList from '../../components/DiscussionContainer'
 import DiscussionContainer from '../../components/DiscussionContainer'
 import Footer from '../../components/Footer'
 import NavBar from '../../components/NavBar'
@@ -31,7 +32,7 @@ const Home = () => {
                         </li>
                     ))}
                 </ul>
-                {/* <DiscussionContainer /> */}
+                <DiscussionContainer/>
             </div>
             <Footer />
         </>
