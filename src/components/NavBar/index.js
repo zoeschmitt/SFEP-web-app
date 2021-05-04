@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { FiSearch, FiUser } from "react-icons/fi";
 import { animateScroll as scroll } from "react-scroll";
@@ -7,6 +8,7 @@ import SearchBar from "../SearchBar";
 
 const NavBar = ({ toggle, setPosts }) => {
   const [scrollNav, setScrollNav] = useState(false);
+
 
   const postService = new PostService();
   const changeNav = () => {

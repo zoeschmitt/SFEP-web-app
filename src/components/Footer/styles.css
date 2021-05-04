@@ -3,6 +3,7 @@ footer {
   grid-template-columns: 1fr 1fr 1fr;
   padding: 48px 24px;
   justify-items: center;
+  bottom: 0;
 }
 
 .footer-wrapper {
