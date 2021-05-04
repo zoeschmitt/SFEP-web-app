@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useCallback } from 'react'
+=======
+import React, { useState } from 'react'
+import CommentList from '../../components/DiscussionContainer'
+>>>>>>> javi
 import DiscussionContainer from '../../components/DiscussionContainer'
 import Footer from '../../components/Footer'
 import NavBar from '../../components/NavBar'
@@ -50,7 +55,11 @@ const Home = () => {
                         </li>
                     ))}
                 </ul>
+<<<<<<< HEAD
                 <DiscussionContainer />
+=======
+                <DiscussionContainer/>
+>>>>>>> javi
             </div>
             <Footer />
         </>
