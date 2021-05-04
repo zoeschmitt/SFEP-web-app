@@ -43,6 +43,7 @@ class UserService {
             }
 
             const res = await axios.post('http://localhost:8000/api/createUser', reqBody);
+            console.log(res);
 
             console.log(`req for createUser: ${reqBody}`);
             console.log(`res for createUser: ${res.data}`);
