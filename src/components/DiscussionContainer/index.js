@@ -1,26 +1,46 @@
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { Link } from 'react-router-dom';
 import './styles.css';
-import React from "react";
+import PostService from '../../services/postService'
+import {useState, useEffect} from "react";
 import Comment from "/Users/macuser/Desktop/NewSoftware/SFEP-web-app/src/components/comment.js";
 
 
-export default function CommentList(props) {
+export default function DiscussionContainer({selectedPost}) {
+    const [comments, setComments] = useState([]);
+    const postService = new PostService();
+
+    const getComments = useCallback(async () => {
+        try {
+            var res = await postService.getDiscussion();
+            console.log(res.comments);
+            setComments(res.comments);
+        } catch (e) {
+            console.log(e);
+        }
+    }, [])
+
+
+    //this loads when the page loads
+    useEffect(() => {
+        getComments();
+    }, [])
+
 return (
     <div className="discussion-container">
        <h5 className="text-muted mb-4">
-           <span className="badge badge-success">{props.comments.length}</span>{" "}
-           Comment {props.comments.length > 0 ? "s" : ""}
+           <span className="badge badge-success">{comments.length}</span>{" "}
+           Comment {comments.length > 0 ? "s" : ""}
        </h5>
 
-       { props.comments.length === 0 && !props.loading ? (
+       { comments.length === 0 && (
            <div className="alert text-center alert-info">
                Comment things
             </div>
-       ) : null}
+       )}
 
-       {props.comments.map((comment, index) => (
-           <Comment key={index} comment={comment} />
+       {comments.map((comment, index) => (
+           <Comment key={comment._id} comment={comment} />
        ))}
         </div>
        );

@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import PostService from '../../services/postService'
 
 export default class CommentForm extends Component {
+    //props: user (userId, userTitle, userName), token, postId
   constructor(props) {
     super(props);
+    const postService = new PostService();
     this.state = {
       loading: false,
       error: "",
@@ -40,6 +43,8 @@ export default class CommentForm extends Component {
     // prevent default form submission
     e.preventDefault();
 
+    console.log(this.comment);
+
     if (!this.isFormValid()) {
       this.setState({ error: "All fields are required." });
       return;
@@ -48,34 +53,41 @@ export default class CommentForm extends Component {
     // loading status and clear error
     this.setState({ error: "", loading: true });
 
-    // persist the comments on server
-    let { comment } = this.state;
-    fetch("http://localhost:3000", {
-      method: "post",
-      body: JSON.stringify(comment)
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.error) {
-          this.setState({ loading: false, error: res.error });
-        } else {
-          // add time return from api and push comment to parent state
-          comment.time = res.time;
-          this.props.addComment(comment);
+    const res = await postService.createComment(props.user.userId, props.postId, this.comment.message, props.user.userName, props.user.userTitle, props.token);
 
-          // clear the message box
-          this.setState({
-            loading: false,
-            comment: { ...comment, message: "" }
-          });
-        }
-      })
-      .catch(err => {
-        this.setState({
-          error: "Something went wrong while submitting form.",
-          loading: false
-        });
-      });
+    if (res.status) {
+        //wajteer
+    } else {
+        this.setState({ error: res.msg, loading: true });
+    }
+    // // persist the comments on server
+    // let { comment } = this.state;
+    // fetch("http://localhost:3000", {
+    //   method: "post",
+    //   body: JSON.stringify(comment)
+    // })
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     if (res.error) {
+    //       this.setState({ loading: false, error: res.error });
+    //     } else {
+    //       // add time return from api and push comment to parent state
+    //       comment.time = res.time;
+    //       this.props.addComment(comment);
+
+    //       // clear the message box
+    //       this.setState({
+    //         loading: false,
+    //         comment: { ...comment, message: "" }
+    //       });
+    //     }
+    //   })
+    //   .catch(err => {
+    //     this.setState({
+    //       error: "Something went wrong while submitting form.",
+    //       loading: false
+    //     });
+    //   });
   }
 
   /**
