@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import user from "../../services/userService";
+import UserService from "../../services/userService";
 
-export default function Login() {
+export default function Login({setIsLoggedIn, setToken}) {
+    const userService = new UserService();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -11,6 +12,18 @@ export default function Login() {
     
     function validateForm() {
         return email.length > 0 && password.length > 0 && username.length > 0 && title.length > 0; 
+    }
+
+    async function makeUser() {
+      console.log(username);
+      console.log(email);
+      console.log(password);
+      console.log(title);
+      const user = await userService.createUser(username, email, password, title);
+      if(user.status && user.token != null) {
+        setIsLoggedIn(true);
+        setToken(user.token);
+      }
     }
     
     function handleSubmit(event) {
@@ -54,7 +67,7 @@ export default function Login() {
               />
             </Form.Group>
             <Button block size="lg" type="submit" 
-            onclick={() => user.createUser(username, email, password, title)}>
+            onClick={() => makeUser()}>
               Sign up
             </Button>
           </Form>
