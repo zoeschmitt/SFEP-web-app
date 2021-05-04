@@ -1,60 +1,59 @@
 import './styles.css';
+import React, { useState, useEffect } from 'react'
 import { FiArrowUpCircle, FiArrowDownCircle, FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import PostService from '../../services/postService'
 
-function PostButtons({ post, user }) {
+function PostButtons({ post, user, token, updatePosts }) {
     const postService = new PostService();
+    const [isLiked, setIsLiked] = useState(false)
+    const [isDisliked, setIsDisliked] = useState(false)
+    const [isCred, setIsCred] = useState(false)
+    const [isUncred, setIsUncred] = useState(false)
 
     function doesContain(array, id) {
         return array.includes(id);
     }
 
+    useEffect(() => {
+        setIsLiked(doesContain(post.likes, user._id));
+        setIsDisliked(doesContain(post.dislikes, user._id));
+        setIsCred(doesContain(post.credibleVotes, user._id));
+        setIsUncred(doesContain(post.uncredibleVotes, user._id));
+    }, [post.credibleVotes, post.dislikes, post.likes, post.uncredibleVotes, user._id])
+
     //if isLike: user already in likes -> ignore
     //if not isLike: user already in dislikes -> ignore
     async function likeOrDislike(isLike) {
-        var containsLike = doesContain(post.likes, user._id);
-        var containsDislike = doesContain(post.dislikes, user._id);
         if (isLike) {
-            // if (containsDislike) {
-            //     //filter out the user from the dislikes
-            //     const newDislikesList = user.dislikes.filter(users => users.id !== user._id);
-            //     post.dislikes = newDislikesList;
-            //     var res1 = await postService.
-            // }
-            // if (containsLike == false) {
-            //     post.likes.push(user._id);
-            //     //api call
-            // }
+            await postService.updateLikes(user._id, post._id, true, token);
         } else {
-            if (containsLike) {
-                const newLikesList = user.likes.filter(users => users.id !== user._id);
-                post.likes = newLikesList;
-                //api call
-            }
-            if (containsDislike == false) {
-                post.dislikes.push(user._id);
-                //api call
-            }
+            await postService.updateLikes(user._id, post._id, false, token);
         }
+        updatePosts();
     }
 
     async function credibleOrNotCredible(isCredible) {
-
+        if (isCredible) {
+            await postService.updateCredibility(user._id, post._id, true, token);
+        } else {
+            await postService.updateCredibility(user._id, post._id, false, token);
+        }
+        updatePosts();
     }
 
     return (
         <div className="buttons-container">
-            <div className="icon" onClick={likeOrDislike(true)}>
-                <FiArrowUpCircle style={{color: doesContain(post.likes, user._id) && 'rgb(47, 180, 241)'}}/>
+            <div className="icon" onClick={() => likeOrDislike(true)}>
+                <FiArrowUpCircle style={{ color: isLiked && 'rgb(47, 180, 241)' }} />
             </div>
-            <div className="icon" onClick={likeOrDislike(false)}>
-                <FiArrowDownCircle style={{color: doesContain(post.dislikes, user._id) && 'rgb(47, 180, 241)'}}/>
+            <div className="icon" onClick={() => likeOrDislike(false)}>
+                <FiArrowDownCircle style={{ color: isDisliked && 'rgb(47, 180, 241)' }} />
             </div>
-            <div className="icon" onClick={credibleOrNotCredible(true)}>
-                <FiPlusCircle  style={{color: doesContain(post.credibleVotes, user._id) && 'rgb(47, 180, 241)'}}/>
+            <div className="icon" onClick={() => credibleOrNotCredible(true)}>
+                <FiPlusCircle style={{ color: isCred && 'rgb(47, 180, 241)' }} />
             </div>
-            <div className="icon" onClick={credibleOrNotCredible(false)}>
-                <FiMinusCircle  style={{color: doesContain(post.uncredibleVotes, user._id) && 'rgb(47, 180, 241)'}}/>
+            <div className="icon" onClick={() => credibleOrNotCredible(false)}>
+                <FiMinusCircle style={{ color: isUncred && 'rgb(47, 180, 241)' }} />
             </div>
         </div>
     )

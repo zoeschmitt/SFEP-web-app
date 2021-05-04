@@ -21,7 +21,7 @@ const Footer = () => {
                 </div>
                 <div className="content-container">
                     <p className="footer-sub-heading">Get in Touch</p>
-                    <p className="footer-link" to="about" smooth={true} duration={500} spy={true} exact='true'>(512) - 566 - 8921</p>
+                    <p className="footer-link" >(512) - 566 - 8921</p>
                 </div>
             </footer>
         </div>

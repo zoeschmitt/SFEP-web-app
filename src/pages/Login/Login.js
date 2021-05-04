@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import UserService from "../../services/userService";
 
-export default function Login({setIsLoggedIn, setToken}) {
+export default function Login({setIsLoggedIn, setToken, setUser}) {
   const userService = new UserService();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,9 @@ export default function Login({setIsLoggedIn, setToken}) {
     console.log(email);
     console.log(password);
     const user = await userService.signIn(email, password);
-    if(user.status && user.token != null) {
+    console.log(user)
+    if(user.status && user.token != null && user.user != null) {
+      setUser(user.user)
       setIsLoggedIn(true);
       setToken(user.token);
     }
