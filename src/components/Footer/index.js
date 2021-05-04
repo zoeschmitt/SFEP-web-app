@@ -12,7 +12,7 @@ const Footer = () => {
             <footer>
                 <div className="content-container">
                     <LinkS className="logo-container" to='/' onClick={toggleHome}>
-                        <img className="logo-image" src="" alt="logo" />
+                        <h1 style={{ color: "#000" }}>Acucheck</h1>
                     </LinkS>
                 </div>
                 <div className="content-container">

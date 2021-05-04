@@ -43,23 +43,23 @@ export default class CommentForm extends Component {
     // prevent default form submission
     e.preventDefault();
 
-    console.log(this.comment);
+    // console.log(this.comment);
 
-    if (!this.isFormValid()) {
-      this.setState({ error: "All fields are required." });
-      return;
-    }
+    // if (!this.isFormValid()) {
+    //   this.setState({ error: "All fields are required." });
+    //   return;
+    // }
 
-    // loading status and clear error
-    this.setState({ error: "", loading: true });
+    // // loading status and clear error
+    // this.setState({ error: "", loading: true });
 
-    const res = await postService.createComment(props.user.userId, props.postId, this.comment.message, props.user.userName, props.user.userTitle, props.token);
+    // const res =  postService.createComment(props.user.userId, props.postId, this.comment.message, props.user.userName, props.user.userTitle, props.token);
 
-    if (res.status) {
-        //wajteer
-    } else {
-        this.setState({ error: res.msg, loading: true });
-    }
+    // if (res.status) {
+    //     //wajteer
+    // } else {
+    //     this.setState({ error: res.msg, loading: true });
+    // }
     // // persist the comments on server
     // let { comment } = this.state;
     // fetch("http://localhost:3000", {

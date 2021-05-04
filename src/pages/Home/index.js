@@ -22,13 +22,18 @@ const Home = ({token, user, toggleCreatePostBox}) => {
     const postBoxToggle = () => {
         setPostBoxOpen(!isOpen)
     }
+    
 
     const getPosts = useCallback(async () => {
         try {
-            var posts = await postService.getAllPosts();
-            console.log(posts.posts.posts);
-            setPosts(posts.posts.posts);
-            setSelectedPost(posts.posts.posts[0])
+            var res = await postService.getAllPosts();
+            var posts = res.posts.posts;
+            console.log(posts);
+            posts.sort(function(a, b) {
+                return (a.createdAt < b.createdAt) ? -1 : ((a.createdAt > b.createdAt) ? 1 : 0);
+            });
+            setPosts(posts);
+            setSelectedPost(posts[0])
         } catch (e) {
             console.log(e);
         }
@@ -56,7 +61,7 @@ const Home = ({token, user, toggleCreatePostBox}) => {
                 <ul className="posts-list-container">
                     {posts.map(post => (
                         <li key={post._id} onClick={() => updateSelectedPost(post)}>
-                            <PostContainer post={post} />
+                            <PostContainer post={post} user={user} />
                         </li>
                     ))}
                 </ul>
