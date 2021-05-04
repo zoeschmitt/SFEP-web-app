@@ -31,7 +31,7 @@ const Home = () => {
                         </li>
                     ))}
                 </ul>
-                {/* <DiscussionContainer /> */}
+                <DiscussionContainer /> 
             </div>
             <Footer />
         </>
