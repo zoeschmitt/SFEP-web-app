@@ -51,6 +51,7 @@ class PostService {
             
             if (res.status === 200) {
                 console.log(res.data);
+
                 return { 'status': true, 'posts': res.data }
             } else {
                 console.log(res.data.error);
