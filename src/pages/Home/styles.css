@@ -16,3 +16,13 @@
   text-decoration: none;
   list-style: none;
 }
+
+.posts-container-wrapper {
+  height: 700px;
+  position: fixed;
+  margin-right: 800px;
+  margin-top: 200px;
+  overflow-y: scroll;
+  display: flex;
+  margin-bottom: 420px;
+}

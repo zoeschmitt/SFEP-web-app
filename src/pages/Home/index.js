@@ -7,11 +7,11 @@ import SideBar from '../../components/SideBar'
 import PostService from '../../services/postService'
 import './styles.css';
 
-const Home = () => {
+const Home = ({token, user}) => {
     const postService = new PostService();
     const [isOpen, setIsOpen] = useState(false) // sidebar
-    const [posts, setPosts] = useState([]) //posts[0]
-    const [selectedPost, setSelectedPost] = useState(null) //posts[0]
+    const [posts, setPosts] = useState([]) 
+    const [selectedPost, setSelectedPost] = useState(null) 
     const toggle = () => {
         setIsOpen(!isOpen)
     }
@@ -40,9 +40,10 @@ const Home = () => {
 
     return (
         <>
-            <SideBar isOpen={isOpen} toggle={toggle} />
+            <SideBar isOpen={isOpen} toggle={toggle} user={user}/>
             <NavBar toggle={toggle} />
             <div className="posts-discussion-wrapper">
+                <div className="posts-container-wrapper">
                 <ul className="posts-list-container">
                     {posts.map(post => (
                         <li key={post._id} onClick={() => updateSelectedPost(post)}>
@@ -50,7 +51,9 @@ const Home = () => {
                         </li>
                     ))}
                 </ul>
-                <DiscussionContainer />
+
+                <DiscussionContainer user={user} selectedPost={selectedPost} token={token}/>
+            </div>
             </div>
             <Footer />
         </>

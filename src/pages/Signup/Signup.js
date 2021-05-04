@@ -5,7 +5,7 @@ import UserService from "../../services/userService";
 import './Signup.css';
 
 
-export default function Login() {
+export default function Login({setIsLoggedIn, setToken}) {
     const userService = new UserService();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +22,10 @@ export default function Login() {
       console.log(password);
       console.log(title);
       const user = await userService.createUser(username, email, password, title);
-
+      if(user.status && user.token != null) {
+        setIsLoggedIn(true);
+        setToken(user.token);
+      }
     }
     
     function handleSubmit(event) {

@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import UserService from "../../services/userService";
 import './Login.css';
 
-export default function Login() {
+export default function Login({setIsLoggedIn, setToken}) {
   const userService = new UserService();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,12 @@ export default function Login() {
   async function signInUser() {
     console.log(email);
     console.log(password);
-    const user = await userService.createUser(email, password);
+    const user = await userService.signIn(email, password);
+    if(user.status && user.token != null) {
+      setIsLoggedIn(true);
+      setToken(user.token);
+    }
+    console.log(user);
   }
 
   function validateForm() {
@@ -45,7 +50,7 @@ export default function Login() {
           />
         </Form.Group>
         <Button block size="lg" type="submit" 
-            onclick={() => userService.signInUser()}>
+            onClick={() => signInUser()}>
           Login
         </Button>
       </Form>
