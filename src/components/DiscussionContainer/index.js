@@ -2,8 +2,8 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import { Link } from 'react-router-dom';
 import './styles.css';
 import PostService from '../../services/postService'
-import {useState, useEffect} from "react";
-import Comment from "C:/Users/Julian/Desktop/school/FinalSEApp/SFEP-web-app/src/components/commentForm.js";
+import {useState, useEffect, useCallback} from "react";
+import Comment from '../comment';
 
 
 export default function DiscussionContainer({selectedPost}) {
@@ -12,7 +12,7 @@ export default function DiscussionContainer({selectedPost}) {
 
     const getComments = useCallback(async () => {
         try {
-            var res = await postService.getDiscussion();
+            var res = await postService.getDiscussion(selectedPost._id);
             console.log(res.comments);
             setComments(res.comments);
         } catch (e) {
