@@ -43,6 +43,7 @@ const Home = () => {
             <SideBar isOpen={isOpen} toggle={toggle} />
             <NavBar toggle={toggle} />
             <div className="posts-discussion-wrapper">
+                <div className="posts-container-wrapper">
                 <ul className="posts-list-container">
                     {posts.map(post => (
                         <li key={post._id} onClick={() => updateSelectedPost(post)}>
@@ -50,6 +51,7 @@ const Home = () => {
                         </li>
                     ))}
                 </ul>
+                </div>
                 <DiscussionContainer />
             </div>
             <Footer />

@@ -1,75 +1,75 @@
-
 footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 48px 24px;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 48px 24px;
+  justify-items: center;
 }
 
 .footer-wrapper {
-    background-color: #fff;
-    border-top: 1px solid rgb(179, 179, 179);
+  background-color: #fff;
+  border-top: 1px solid rgb(179, 179, 179);
 }
 
 .logo-container {
-    display: flex;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: 10px;
+  bottom: 0;
 }
 
 .content-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 0 24px;
-    grid-gap: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0 24px;
+  grid-gap: 0;
 }
 
 .footer-link {
-    color: #afafaf;
-    text-decoration: none;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    padding: 2px 0;
-    cursor: pointer;
+  color: #afafaf;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  padding: 2px 0;
+  cursor: pointer;
 }
 
 .footer-link:hover {
-    color: #48adf5;
-    transition: 0.3s ease-out;
+  color: #48adf5;
+  transition: 0.3s ease-out;
 }
 
 .footer-sub-heading {
-    color: #2b2b2b;
-    text-decoration: none;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 10px 0;
+  color: #2b2b2b;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 0;
 }
 
 .logo-image {
-    width: 70%;
-    cursor: pointer;
+  width: 70%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
-    .content-container {
-        padding: 0;
-    }
-    .footer-link {
-        font-size: 0.7rem;
-    }
-    .footer-sub-heading {
-        font-size: 0.7rem;
-    }
-    .logo-image {
-        width: 100%;
-    }
+  .content-container {
+    padding: 0;
+  }
+  .footer-link {
+    font-size: 0.7rem;
+  }
+  .footer-sub-heading {
+    font-size: 0.7rem;
+  }
+  .logo-image {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .logo-image {
-        width: 100%;
-    }
+  .logo-image {
+    width: 100%;
+  }
 }

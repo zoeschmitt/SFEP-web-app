@@ -15,15 +15,29 @@ const NavBar = ({ toggle }) => {
     const toggleHome = () => {
         scroll.scrollToTop();
     };
-
+    const SearchBar = ({onChange, placeholder}) => {
+        return (
+          <div className="Search">
+            <span className="SearchSpan">
+              <FiSearch />
+            </span>
+            <input
+              className="SearchInput"
+              type="text"
+              onChange={onChange}
+              placeholder={"Search..."}
+            />
+          </div>
+        );
+      };
     return (
         <>
             <nav style={{background: scrollNav ? 'rgba(255, 255, 255, 0.5)' : 'transparent', color: scrollNav ? '#000' : '#fff'}} >
                 <div className="nav-bar-container">
                     <div className="icon">
-                        <FiSearch font-size="1.3rem" style={{color: '#000'}}/>
-                        <input type="text" name="search" placeholder="Search..." />
-
+                        {/* <FiSearch font-size="1.3rem" style={{color: '#000'}}/>
+                        <input type="text" name="search" placeholder="Search..." /> */}
+                        <SearchBar></SearchBar>
 
                     </div>
                     <h1 style={{color: '#000'}}>Acucheck</h1>
