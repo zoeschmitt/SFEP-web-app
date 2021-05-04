@@ -51,6 +51,7 @@ const Home = ({token, user}) => {
                         </li>
                     ))}
                 </ul>
+
                 <DiscussionContainer user={user} selectedPost={selectedPost} token={token}/>
             </div>
             <Footer />
