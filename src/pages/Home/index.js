@@ -56,7 +56,6 @@ const Home = ({ token, user, toggleCreatePostBox }) => {
     return (
         <>
             <SideBar isOpen={isOpen} toggle={toggle} user={user} />
-
             <NavBar toggle={toggle} postBoxToggle={postBoxToggle} setPosts={setPosts} />
             {postBoxOpen && <PostBox />}
             <div className="posts-discussion-wrapper">
@@ -69,7 +68,7 @@ const Home = ({ token, user, toggleCreatePostBox }) => {
                         ))}
                     </ul>
 
-                    <DiscussionContainer user={user} selectedPost={selectedPost} token={token} />
+                { selectedPost &&   <DiscussionContainer user={user} selectedPost={selectedPost} token={token} />}
                 </div>
             </div>
             <Footer />
