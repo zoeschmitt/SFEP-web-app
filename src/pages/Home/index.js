@@ -8,6 +8,8 @@ import SideBar from '../../components/SideBar'
 import PostService from '../../services/postService'
 import './styles.css';
 
+
+
 const Home = ({ token, user, toggleCreatePostBox }) => {
     const postService = new PostService();
     const [isOpen, setIsOpen] = useState(false) // sidebar
