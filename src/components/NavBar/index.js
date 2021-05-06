@@ -5,11 +5,12 @@ import "./styles.css";
 import PostService from "../../services/postService";
 import SearchBar from "../SearchBar";
 import Popup from "reactjs-popup";
-import PostBox from "C:/Users/Adam Castillo/Desktop/SEP/src/components/PostBox/index.js";
+import PostBox from "../PostBox/index.js";
 
 const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
   const [scrollNav, setScrollNav] = useState(false);
   const [searchValue, setValueList] = useState("");
+  const [buttonPopup, setButtonPopup] = useState(false);
   const search = (value) => {
     setValueList(value);
   };
@@ -32,7 +33,7 @@ const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
       setPosts(res.posts);
     } else console.log("error");
   }
-  const [buttonPopup, setButtonPopup] = useState(false);
+  
 
   async function makePost() {
     const res = await postService.createPost(
@@ -59,14 +60,9 @@ const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
       >
         <div className="nav-bar-container">
           <div className="icon">
-            {/* <FiSearch font-size="1.3rem" style={{color: '#000'}}/>
-                        <input type="text" name="search" placeholder="Search..." /> */}
             <SearchBar submitSearch={submitSearch} />
           </div>
           <h1 style={{ color: "#000" }}>Acucheck</h1>
-          <button onClick={() => setButtonPopup(true)}>
-            <h4 color="black">New Post</h4>
-          </button>
           <PostBox trigger={buttonPopup} setTrigger={setButtonPopup}>
             <h3>What are you thinking?</h3>
             <textarea
@@ -75,9 +71,15 @@ const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
             ></textarea>
             <button onClick={makePost}>Submit</button>
           </PostBox>
-          <div className="icon">
-            <FiUser style={{ color: "#000" }} />
+          <div className="n-icon">
+            <FiPlusSquare onClick={() => setButtonPopup(true)} style={{ color: "#000" }} />
           </div>
+          {/* <div className="profile-add-icons">
+          
+            <div className="icon">
+              <FiUser style={{ color: "#000" }} />
+            </div>
+          </div> */}
         </div>
       </nav>
     </>

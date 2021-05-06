@@ -11,16 +11,11 @@ import "./styles.css";
 const Home = ({ token, user, toggleCreatePostBox }) => {
   const postService = new PostService();
   const [isOpen, setIsOpen] = useState(false); // sidebar
-  const [postBoxOpen, setPostBoxOpen] = useState(false); //post box
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
 
   const toggle = () => {
     setIsOpen(!isOpen);
-  };
-
-  const postBoxToggle = () => {
-    setPostBoxOpen(!isOpen);
   };
 
   const getPosts = useCallback(async () => {
@@ -40,7 +35,7 @@ const Home = ({ token, user, toggleCreatePostBox }) => {
         console.log(`setting`);
         updateSelectedPost(posts[0]);
       }
-      console.log(`Selected post id: ${selectedPost._id}`);
+      //console.log(`Selected post id: ${selectedPost._id}`);
     } catch (e) {
       console.log(e);
     }
@@ -61,13 +56,11 @@ const Home = ({ token, user, toggleCreatePostBox }) => {
 
       <NavBar
         toggle={toggle}
-        postBoxToggle={postBoxToggle}
         setPosts={setPosts}
         user={user}
         token={token}
         getPosts={getPosts}
       />
-      {postBoxOpen && <PostBox />}
       <div className="posts-discussion-wrapper">
         <div className="posts-container-wrapper">
           <ul className="posts-list-container">
@@ -84,14 +77,10 @@ const Home = ({ token, user, toggleCreatePostBox }) => {
             ))}
           </ul>
 
-          <DiscussionContainer
-            user={user}
-            selectedPost={selectedPost}
-            token={token}
-          />
+          { selectedPost &&   <DiscussionContainer user={user} selectedPost={selectedPost} token={token} />}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

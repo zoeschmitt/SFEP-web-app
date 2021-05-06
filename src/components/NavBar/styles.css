@@ -49,9 +49,15 @@ nav {
   cursor: pointer;
 }
 
-.icon {
+.n-icon {
   top: 0;
-  font-size: 1.8rem;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.n-icon:hover {
+  transform: scale(1.3);
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 

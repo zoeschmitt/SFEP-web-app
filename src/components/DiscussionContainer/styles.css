@@ -9,11 +9,34 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    align-items: top;
+    align-items: left;
     overflow: hidden;
     width: 40%;
     height: 80%;
     box-sizing: border-box;
     position: fixed;
     margin-top: 100px;
+  }
+
+  .comments-list-container {
+    /* padding: 50px; */
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    text-decoration: none;
+    list-style: none;
+  }
+
+  .badge {
+    padding: 10px;
+  }
+
+  .header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
   }

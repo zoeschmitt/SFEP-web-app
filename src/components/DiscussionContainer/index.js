@@ -1,13 +1,14 @@
-import { propTypes } from 'react-bootstrap/esm/Image';
-import { Link } from 'react-router-dom';
 import './styles.css';
+import { FiPlusSquare } from "react-icons/fi";
 import PostService from '../../services/postService'
-import {useState, useEffect, useCallback} from "react";
-import Comment from '../comment';
+import { useState, useEffect, useCallback } from "react";
+import CommentContainer from '../CommentContainer';
+import CommentForm from '../CommentForm';
+import Popup from 'reactjs-popup';
 
-
-export default function DiscussionContainer({selectedPost}) {
+export default function DiscussionContainer({ selectedPost }) {
     const [comments, setComments] = useState([]);
+    const [buttonPopup, setButtonPopup] = useState(false);
     const postService = new PostService();
 
     const getComments = useCallback(async () => {
@@ -18,31 +19,37 @@ export default function DiscussionContainer({selectedPost}) {
         } catch (e) {
             console.log(e);
         }
-    }, [])
+    }, [postService, selectedPost._id])
 
 
     //this loads when the page loads
     useEffect(() => {
         getComments();
-    }, [])
+    }, [selectedPost])
 
-return (
-    <div className="discussion-container">
-       <h5 className="text-muted mb-4">
-           <span className="badge badge-success">{comments.length}</span>{" "}
-           Comment {comments.length > 0 ? "s" : ""}
-       </h5>
-
-       { comments.length === 0 && (
-           <div className="alert text-center alert-info">
-               Comment things
+    return (
+        <div className="discussion-container">
+            <div className="header-container">
+                <h5 className="badge-text">
+                    <span className="badge">{comments.length}</span>{" "}
+           Comment {comments.length === 1 ? "" : "s"}
+                </h5>
+                <Popup trigger={buttonPopup} setTrigger={setButtonPopup} position="center">
+                    <CommentForm />
+                </Popup>
+                <div className="n-icon">
+                    <FiPlusSquare onClick={() => setButtonPopup(true)} style={{ color: "#000" }} />
+                </div>
             </div>
-       )}
+            <ul className="comments-list-container">
+                {comments.map((comment, index) => (
+                    <li key={comment._id}>
+                        <CommentContainer comment={comment} />
+                    </li>
+                ))}
+            </ul>
 
-       {comments.map((comment, index) => (
-           <Comment key={comment._id} comment={comment} />
-       ))}
+
         </div>
-       );
-    }
-       
+    );
+}

@@ -1,0 +1,28 @@
+.comment-container {
+    margin: 0 0 20px 0;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: left;
+    overflow: hidden;
+    left: 0;
+    width: 700px;
+  }
+  
+  .name-and-title-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: left;
+    text-align: left;
+    font-size: 2rem;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  p {
+    text-align: left;
+  
+  }
