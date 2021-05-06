@@ -55,7 +55,6 @@ nav {
   cursor: pointer;
 }
 
-
 input::text {
   color: black;
 }
@@ -80,3 +79,7 @@ input::text {
     padding: 0 20px;
   }
 }
+/* #square {
+  font-size: 20px;
+  color: black;
+} */

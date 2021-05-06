@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiSearch, FiUser } from "react-icons/fi";
+import { FiSearch, FiUser, FiPlusSquare, FiSquare } from "react-icons/fi";
 import { animateScroll as scroll } from "react-scroll";
 import "./styles.css";
 import PostService from "../../services/postService";
@@ -7,8 +7,12 @@ import SearchBar from "../SearchBar";
 import Popup from "reactjs-popup";
 import PostBox from "C:/Users/Adam Castillo/Desktop/SEP/src/components/PostBox/index.js";
 
-const NavBar = ({ toggle, setPosts }) => {
+const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
   const [scrollNav, setScrollNav] = useState(false);
+  const [searchValue, setValueList] = useState("");
+  const search = (value) => {
+    setValueList(value);
+  };
 
   const postService = new PostService();
   const changeNav = () => {
@@ -28,8 +32,23 @@ const NavBar = ({ toggle, setPosts }) => {
       setPosts(res.posts);
     } else console.log("error");
   }
+  const [buttonPopup, setButtonPopup] = useState(false);
 
-  
+  async function makePost() {
+    const res = await postService.createPost(
+      user._id,
+      " ",
+      searchValue,
+      user.name,
+      user.title,
+      token
+    );
+    console.log(res);
+    if (res.status) {
+      getPosts();
+    }
+  }
+
   return (
     <>
       <nav
@@ -45,9 +64,16 @@ const NavBar = ({ toggle, setPosts }) => {
             <SearchBar submitSearch={submitSearch} />
           </div>
           <h1 style={{ color: "#000" }}>Acucheck</h1>
-          <button>Open Popup</button>
-          <PostBox trigger={true}>
-            <h3>Popup</h3>
+          <button onClick={() => setButtonPopup(true)}>
+            <h4 color="black">New Post</h4>
+          </button>
+          <PostBox trigger={buttonPopup} setTrigger={setButtonPopup}>
+            <h3>What are you thinking?</h3>
+            <textarea
+              type="text"
+              onChange={(e) => search(e.target.value)}
+            ></textarea>
+            <button onClick={makePost}>Submit</button>
           </PostBox>
           <div className="icon">
             <FiUser style={{ color: "#000" }} />
