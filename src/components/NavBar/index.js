@@ -66,6 +66,7 @@ const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
           <PostBox trigger={buttonPopup} setTrigger={setButtonPopup}>
             <h3>What are you thinking?</h3>
             <textarea
+              className="textBox"
               type="text"
               onChange={(e) => search(e.target.value)}
             ></textarea>
