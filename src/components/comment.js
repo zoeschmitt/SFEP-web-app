@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function Comment(props) {
-  const { post } = props.comment;
+export default function Comment({comment}) {
+  
 
   return (
     <div className="media mb-3">
@@ -15,8 +15,8 @@ export default function Comment(props) {
 
       <div className="media-body p-2 shadow-sm rounded bg-light border">
         {/* <small className="float-right text-muted">{time}</small> */}
-        <h6 className="mt-0 mb-1 text-muted">{post.userName}</h6>
-        {post.body}
+        <h6 className="mt-0 mb-1 text-muted">{comment.userName}</h6>
+        {comment.text}
       </div>
     </div>
   );
