@@ -16,13 +16,6 @@ const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
   };
 
   const postService = new PostService();
-  const changeNav = () => {
-    window.scrollY >= 80 ? setScrollNav(true) : setScrollNav(false);
-  };
-
-  const toggleHome = () => {
-    scroll.scrollToTop();
-  };
 
   async function submitSearch(searchT) {
     console.log(searchT);
@@ -47,6 +40,7 @@ const NavBar = ({ toggle, setPosts, user, token, getPosts }) => {
     console.log(res);
     if (res.status) {
       getPosts();
+      setButtonPopup(false)
     }
   }
 

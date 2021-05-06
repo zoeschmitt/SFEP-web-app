@@ -6,7 +6,7 @@ import CommentContainer from '../CommentContainer';
 import CommentForm from '../CommentForm';
 import Popup from 'reactjs-popup';
 
-export default function DiscussionContainer({ selectedPost }) {
+export default function DiscussionContainer({ user, selectedPost, token, setPosts }) {
     const [comments, setComments] = useState([]);
     const [buttonPopup, setButtonPopup] = useState(false);
     const postService = new PostService();
@@ -19,7 +19,7 @@ export default function DiscussionContainer({ selectedPost }) {
         } catch (e) {
             console.log(e);
         }
-    }, [postService, selectedPost._id])
+    }, [, selectedPost])
 
 
     //this loads when the page loads
@@ -29,14 +29,14 @@ export default function DiscussionContainer({ selectedPost }) {
 
     return (
         <div className="discussion-container">
-            <div className="header-container">
+        { selectedPost &&   
+        <>
+        <div className="header-container">
                 <h5 className="badge-text">
                     <span className="badge">{comments.length}</span>{" "}
-           Comment {comments.length === 1 ? "" : "s"}
+            Comment {comments.length === 1 ? "" : "s"}
                 </h5>
-                <Popup trigger={buttonPopup} setTrigger={setButtonPopup} position="center">
-                    <CommentForm />
-                </Popup>
+                <CommentForm updateComments={getComments} user={user} post={selectedPost} token={token} trigger={buttonPopup} setTrigger={setButtonPopup} setPosts={setPosts} />
                 <div className="n-icon">
                     <FiPlusSquare onClick={() => setButtonPopup(true)} style={{ color: "#000" }} />
                 </div>
@@ -48,8 +48,8 @@ export default function DiscussionContainer({ selectedPost }) {
                     </li>
                 ))}
             </ul>
-
-
+            </>
+            }
         </div>
     );
 }

@@ -63,21 +63,21 @@ const Home = ({ token, user, toggleCreatePostBox }) => {
       />
       <div className="posts-discussion-wrapper">
         <div className="posts-container-wrapper">
-          <ul className="posts-list-container">
+        { posts &&   <ul className="posts-list-container">
             {posts.map((post) => (
-              <li key={post._id}>
+                <li key={post._id}>
                 <PostContainer
-                  post={post}
-                  user={user}
-                  token={token}
-                  setSelectedPost={updateSelectedPost}
-                  getPosts={getPosts}
+                    post={post}
+                    user={user}
+                    token={token}
+                    setSelectedPost={updateSelectedPost}
+                    getPosts={getPosts}
                 />
-              </li>
+                </li>
             ))}
-          </ul>
+            </ul>}
 
-          { selectedPost &&   <DiscussionContainer user={user} selectedPost={selectedPost} token={token} />}
+          { selectedPost &&   <DiscussionContainer user={user} selectedPost={selectedPost} token={token} setPosts={getPosts}/>}
         </div>
       </div>
       {/* <Footer /> */}
